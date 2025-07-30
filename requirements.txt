@@ -2,3 +2,5 @@ langchain
 openai
 python-dotenv
 langchain_community
+langgraph 
+openai
