@@ -4,3 +4,7 @@ python-dotenv
 langchain_community
 langgraph 
 openai
+smtplib 
+email-validator
+pymongo 
+dnspython
