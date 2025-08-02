@@ -7,6 +7,9 @@ from langchain.agents.agent_types import AgentType
 from dotenv import load_dotenv
 load_dotenv()
 from mail import send_email
+from db import collection  
+import asyncio
+import datetime
 
 class mailInputs(BaseModel):
     topic: str
@@ -65,3 +68,18 @@ send_email(
     subject=subject,
     body=body
 )
+
+async def insert_mail_record():
+    await collection.insert_one({
+        "topic": inputs["topic"],
+        "recipient_name": inputs["recipient_name"],
+        "recipient_email": inputs["recipient_email"],
+        "tone": inputs["tone"],
+        "name_of_sender": inputs["name_of_sender"],
+        "contact_details": inputs["contact_deatils"],
+        "subject": subject,
+        "body": body,
+        "timestamp": datetime.datetime.utcnow()
+    })
+
+asyncio.run(insert_mail_record())    
